@@ -8,12 +8,16 @@ module.exports = {
         filename: 'js/[name]-boundle.js'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude:path.resolve(__dirname,"node_modules"),
                 include:path.resolve(__dirname,"src")
+            },
+            {
+                test:/\.css$/,
+                loader:'style-loader!css-loader?importLoaders=1!postcss-loader'//loaders数组格式
             }
         ]
     },
