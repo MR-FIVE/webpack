@@ -16,8 +16,39 @@ module.exports = {
                 include:path.resolve(__dirname,"src")
             },
             {
+                test:/\.html$/,
+                loader:'html-loader'
+            },
+            {
+                test:/\.tpl$/,
+                loader:'ejs-loader'
+            },
+            {
                 test:/\.css$/,
                 loader:'style-loader!css-loader?importLoaders=1!postcss-loader'//loaders数组格式
+            },
+            {
+                test:/\.less$/,
+                loader:'style-loader!css-loader!postcss-loader!less-loader'
+            },
+            {
+                test:/\.scss$/,
+                loader:'style-loader!css-loader!postcss-loader!sass-loader'
+            },
+            // {
+            //     test:/\.(png|jpg|gif|svg)$/i,
+            //     loader:'url-loader',
+            //     query:{
+            //         limit:40000,
+            //         name:'assets/[name]-[hash:5].[ext]'
+            //     }
+            // }
+            {
+                test:/\.(png|jpe?g|gif|svg)$/i,
+                loaders:[
+                    'url-loader?limit=8192&name=assets/[name]-[hash:5].[ext]',
+                    'image-webpack-loader'
+                ]
             }
         ]
     },
